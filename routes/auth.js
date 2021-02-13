@@ -1,12 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-router.post('/register', function(req, res, next) {
-    res.send({token: 'todo', email: 'todo'});
-});
+const { signJWT } = require('../middleware/jwt');
+const { registerController, loginController } = require('../controllers/auth');
 
-router.post('/login', function(req, res) {
-    res.send({token: 'todo', email: 'tody'})
-})
+router.post('/register', registerController, signJWT);
+router.post('/login', loginController, signJWT);
 
 module.exports = router;

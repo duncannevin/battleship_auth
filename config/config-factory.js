@@ -7,15 +7,6 @@ const SecurityConfig = {
     allowedHosts: JSON.parse(process.env.ALLOWED_HOSTS || '"*"')
 };
 
-/**
- driver = "com.mysql.cj.jdbc.Driver"
- jbdc = "jdbc:mysql://localhost:3306/battleship_auth?useSSL=false&allowPublicKeyRetrieval=true"
- jbdc = ${?DB_JBDC}
- user = "root"
- user = ${?DB_USER}
- password = "root"
- password = ${?DB_PW}
- */
 const DBConfig = {
     name: process.env.DB_NAME || 'battleship_auth',
     host: process.env.DB_HOST || 'localhost',
@@ -24,4 +15,10 @@ const DBConfig = {
     password: process.env.DB_PASSWORD || 'root'
 };
 
-module.exports = { ServerConfig, SecurityConfig, DBConfig };
+const JWTConfig = {
+    secret: process.env.JWT_SECRET || '23908j98jfa98jh90a8weu98',
+    issuer: process.env.JWT_ISSUER || `http://${DBConfig.host}:${DBConfig.port}`,
+    realm: process.env.JWT_REALM || 'com.duncannevin'
+};
+
+module.exports = { ServerConfig, SecurityConfig, DBConfig, JWTConfig };
