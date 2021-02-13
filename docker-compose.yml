@@ -13,7 +13,7 @@ services:
       DB_PORT: '3306'
       JWT_SECRET: ${BATTLESHIP_JWT_SECRET}
     build:
-      context: ./
+      context: .
       dockerfile: Dockerfile
     depends_on:
       - db
