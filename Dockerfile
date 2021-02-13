@@ -18,4 +18,4 @@ COPY . .
 
 RUN export NODE_ENV=production
 
-CMD ["node", "/bin/www"]
+CMD ["node", "bin/www"]
