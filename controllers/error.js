@@ -19,4 +19,4 @@ function handleError(error, req, res) {
     return res.status(500).send();
 }
 
-module.exports = { handleError }
+module.exports = {handleError};

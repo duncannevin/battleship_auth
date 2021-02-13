@@ -4,7 +4,7 @@ const {JWTConfig} = require('../config/config-factory');
 
 function signJWT(req, res) {
     req.body.token = jwt.sign(
-        {id: req.id},
+        {id: req.body.id},
         JWTConfig.secret
     );
     res.send(req.body);
@@ -12,14 +12,19 @@ function signJWT(req, res) {
 
 function verifyJWT(req, res, next) {
     try {
-        const token = req.headers.get('Authorization');
+        const token = req.headers['authorization'];
+
         if (!token) {
             throw new Error('Missing header');
         }
-        req.user = jwt.verify(token, JWTConfig.secret);
+
+        const bearerRemoved = token.replace('Bearer ', '');
+
+        req.user = jwt.verify(bearerRemoved, JWTConfig.secret);
+        next();
     } catch(err) {
-        req.status(401).send();
+        res.status(401).send();
     }
 }
 
-module.exports = {signJWT};
+module.exports = {signJWT, verifyJWT};
