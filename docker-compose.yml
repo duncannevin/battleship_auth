@@ -18,5 +18,3 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    depends_on:
-      - db
