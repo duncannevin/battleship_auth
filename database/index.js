@@ -8,12 +8,14 @@ const db = new Sequelize(
     DBConfig.password,
     {
         host: DBConfig.host,
+				port: DBConfig.port,
         dialect: 'mysql',
         logging: msg => log.debug(msg)
     }
 );
 
 async function testConnection() {
+		console.log(DBConfig);
     try {
         await db.authenticate();
         log.debug(`DB connected a..okay`);
