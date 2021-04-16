@@ -13,7 +13,13 @@ async function registerController(req, res, next) {
 
 async function loginController(req, res, next) {
     try {
-        const {dataValues: {id, email, createdAt, password}} = await findUserByEmail(req.body.email);
+        const user = await findUserByEmail(req.body.email);
+
+        if (!user) {
+            throw new Error('Not Found');
+        }
+
+        const {dataValues: {id, email, createdAt, password}} = user;
 
         if (password !== req.body.password) {
             throw new Error('Unauthorized');

@@ -6,7 +6,7 @@ COPY package.json .
 COPY package-lock.json .
 
 # install ALL node_modules, including 'devDependencies'
-RUN npm install
+RUN npm install --no-cache --pull
 
 COPY . .
 

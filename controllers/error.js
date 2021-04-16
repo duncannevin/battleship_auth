@@ -11,6 +11,10 @@ function handleError(error, req, res) {
         }
     }
 
+    if (error.message && error.message === 'Not Found') {
+        return res.status(404).send();
+    }
+
     if (error.message && error.message === 'Unauthorized') {
         return res.status(401).send();
     }
