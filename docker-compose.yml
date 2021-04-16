@@ -6,7 +6,7 @@ services:
     image: battleship/auth
     restart: unless-stopped
     ports:
-      - 3000:3000
+      - 3333:3333
     environment:
       DB_HOST: ${DO_DB_HOST}
       DB_PORT: ${DO_DB_PORT}
@@ -17,5 +17,5 @@ services:
     volumes:
       - ../log/battleship_auth:/log
     build:
-      context: .
+      context: ~/Documents/battleship/battleship_auth
       dockerfile: Dockerfile
