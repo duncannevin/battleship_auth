@@ -15,7 +15,9 @@ services:
       JWT_SECRET: ${BATTLESHIP_JWT_SECRET}
       UPDATER_LOCATION: ${BATTLESHIP_UPDATER_LOCATION}
     volumes:
-      - ../log/battleship_auth:/log
+      - ./log/battleship_auth:/log
     build:
       context: ~/Documents/battleship/battleship_auth
       dockerfile: Dockerfile
+    depends_on:
+      - battleship
